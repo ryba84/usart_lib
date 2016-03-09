@@ -1,3 +1,12 @@
+
+Hardware USART library for AVR 8bit MCU's
+
+Copyright
+    Piotr Rudzki (c)2015 
+
+Date
+    08.03.2016 
+
 License
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
