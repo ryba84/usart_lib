@@ -162,7 +162,7 @@ void usartInit(usartNumber_T const usartNumber, uint16_t const ubrrValue) {
 		// 8N1 (8 bit data, no parity, one stop)
 		USART0_8N1_FRAME_FORMAT;
 		break;
-#endif /* defined (USE_USART0) */
+#endif /* defined (USE_USART0) || defined (USE_USART0_INTERRUPT) */
 #if defined (USE_USART1) || defined (USE_USART1_INTERRUPT)
 	case USART1:
 		// set baud rate
@@ -178,7 +178,7 @@ void usartInit(usartNumber_T const usartNumber, uint16_t const ubrrValue) {
 		// 8N1 (8 bit data, no parity, one stop)
 		USART1_8N1_FRAME_FORMAT;
 		break;
-#endif /* defined (USE_USART1) */
+#endif /* defined (USE_USART1) || defined (USE_USART1_INTERRUPT) */
 #if defined (USE_USART2) || defined (USE_USART2_INTERRUPT)
 	case USART2:
 		// set baud rate
@@ -194,7 +194,7 @@ void usartInit(usartNumber_T const usartNumber, uint16_t const ubrrValue) {
 		// 8N1 (8 bit data, no parity, one stop)
 		USART2_8N1_FRAME_FORMAT;
 		break;
-#endif /* defined (USE_USART2) */
+#endif /* defined (USE_USART2) || defined (USE_USART2_INTERRUPT) */
 #if defined (USE_USART3) || defined (USE_USART3_INTERRUPT)
 	case USART3:
 		// set baud rate
@@ -210,7 +210,7 @@ void usartInit(usartNumber_T const usartNumber, uint16_t const ubrrValue) {
 		// 8N1 (8 bit data, no parity, one stop)
 		USART3_8N1_FRAME_FORMAT;
 		break;
-#endif /* defined (USE_USART3) */
+#endif /* defined (USE_USART3) || defined (USE_USART3_INTERRUPT) */
 	default:
 		break;
 	}

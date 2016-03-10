@@ -27,6 +27,8 @@
  * For now only supported data format is 8N1.
  *
  * \subsection changelog_sec Changelog
+ * \version 2.0 - 10.03.2016
+ * \li removed bug in usart_lib.c - wrong conditional compilation
  * \version 2.0 - 08.03.2016
  * \li full library rewrite, whole usage change
  * \li added doxygen generated documentation
@@ -44,27 +46,27 @@
  *
  * \li Include usart_lib.h in your sources.
  * \li Define proper macros, below details.
+ * \note All definitions  should be passed in CFLAGS to AVR-GCC. Editing usart_lib.h isn't preferred.
  * \li Desired USART must be initialized before use. In both modes procedure looks identical. Simply call usartInit(usartNumber_T, uint16_t) function.
  * 
  * \subsection interrupt_sec Interrupt based usage:
  *
- * \li Define minimum one USART to use. e.g. USE_USART0_INTERRUPT, USE_USART1_INTERRUPT, USE_USART1_INTERRUPT, USE_USART1_INTERRUPT.  You can simply define this at the beginning usart_lib.h or in CFLAGS passed to AVR-GCC. Second option is preferred.
- * \li Additional define buffers length separate for every USART transmitter and receiver. e.g. USART0_RX_BUFFER_LENGTH=32, USART0_TX_BUFFER_LENGTH=64. NOTE buffer length must be power of 2 and not exceed 256. If you not define buffers for used USART both buffers will be 16 bytes length.
+ * \li Define minimum one USART to use. e.g. USE_USART0_INTERRUPT, USE_USART1_INTERRUPT, USE_USART1_INTERRUPT, USE_USART1_INTERRUPT. 
+ * \li Additional define buffers length separate for every USART transmitter and receiver. e.g. USART0_RX_BUFFER_LENGTH=32, USART0_TX_BUFFER_LENGTH=64.
+ * \note Buffer length must be power of 2 and not exceed 256. If you not define buffers for used USART both buffers will be 16 bytes length.
  * \li Use functions provided for this purpose.
  *
  * \warning If interrupt mode isn't used for given USART it should not be enabled by macro USE_USARTx_INTERRUPT.
  * It'll use some flash for two ISR (for receiver and transmitter) and some RAM for buffers!
- * \sa interrupt_rx_grp
- * \sa interrupt_tx_grp
+ * \sa interrupt_grp
  *
  * \subsection normal_sec Normal usage:
  *
- * \li Define minimum one USART to use: USE_USART0, USE_USART1, USE_USART2, USE_USART3. You can simply define this at the beginning usart_lib.h or in CFLAGS passed to AVR-GCC. Second option is preferred.
+ * \li Define minimum one USART to use: USE_USART0, USE_USART1, USE_USART2, USE_USART3.
  * \li Use functions provided for this purpose.
  *
- * \sa normal_rx_grp
- * \sa normal_tx_grp
+ * \sa normal_grp
  *
- * Always newest version You can find here: https://github.com/ryba84/usart_lib
+ * Always newest version here: https://github.com/ryba84/usart_lib
  * \example interrupt_mode.c
  */
