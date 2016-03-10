@@ -31,14 +31,10 @@
  * New type definitions
  * \defgroup universal_fct_grp Universal functions
  * This group contains functions used by all modes transmitter and receiver
- * \defgroup interrupt_rx_grp Interrupt mode receiver functions
- * Functions to use with interrupt mode receiver
- * \defgroup interrupt_tx_grp Interrupt mode transmitter functions
- * Functions to use with interrupt mode transmitter
- * \defgroup normal_rx_grp Normal mode receiver functions
- * Functions to use with normal mode receiver
- * \defgroup normal_tx_grp Normal mode transmitter functions
- * Functions to use with normal mode transmitter
+ * \defgroup interrupt_grp Interrupt mode functions
+ * Functions to use with interrupt mode USART
+ * \defgroup normal_grp Normal mode functions
+ * Functions to use with normal mode USART
  */
 
 #include <avr/io.h>
@@ -242,22 +238,6 @@ typedef struct {
 	volatile _txStatus_T status; /*!< interrupt based transmitter status (_txStarted_T)*/
 } usartTxBuffer_T;
 
-#if defined (USE_USART0_INTERRUPT) || defined (USE_USART1_INTERRUPT)\
-	|| defined (USE_USART2_INTERRUPT) || defined (USE_USART3_INTERRUPT)
-/*! \brief Get byte from receive buffer.
- * \return When buffer empty returns -1, otherwise returns data byte.
- * \param usartNumber USART number
- * \ingroup interrupt_rx_grp
-*/
-int16_t usartGetByteFromReceiveBuffer(usartNumber_T const usartNumber);
-/*! \brief Put byte to transmit buffer.
- * \return When buffer full it doesn't put any data in and returns -1,
- * otherwise returns 0.
- * \param usartNumber USART number
- * \param data Byte to put in buffer
- * \ingroup interrupt_tx_grp
- */
-int8_t usartPutByteToTransmitBuffer(usartNumber_T const usartNumber, uint8_t const data);
 /*! \brief USART initialization.
  *
  * Always must be run for used USART. On the fly baud rate change supported.
@@ -268,12 +248,28 @@ int8_t usartPutByteToTransmitBuffer(usartNumber_T const usartNumber, uint8_t con
  * \ingroup universal_fct_grp
  */
 void usartInit(usartNumber_T const usartNumber, uint16_t const ubrrValue);
+#if defined (USE_USART0_INTERRUPT) || defined (USE_USART1_INTERRUPT)\
+	|| defined (USE_USART2_INTERRUPT) || defined (USE_USART3_INTERRUPT)
+/*! \brief Get byte from receive buffer.
+ * \return When buffer empty returns -1, otherwise returns data byte.
+ * \param usartNumber USART number
+ * \ingroup interrupt_grp
+*/
+int16_t usartGetByteFromReceiveBuffer(usartNumber_T const usartNumber);
+/*! \brief Put byte to transmit buffer.
+ * \return When buffer full it doesn't put any data in and returns -1,
+ * otherwise returns 0.
+ * \param usartNumber USART number
+ * \param data Byte to put in buffer
+ * \ingroup interrupt_grp
+ */
+int8_t usartPutByteToTransmitBuffer(usartNumber_T const usartNumber, uint8_t const data);
 /*! \brief Register callback function called when new data in buffer.
  *
  * Callback function must be void type, and get as argument USART number (usartNumber_T).
  * Registering this function is not required.
  * \param callback Pointer to void function. Function must accept USART number as parameter (usartNumber_T)
- * \ingroup interrupt_rx_grp
+ * \ingroup interrupt_grp
  */
 void registerRxDataReadyCallback(_usartFctPtr_T callback);
 /*! \brief Register callback function called when receive buffer full.
@@ -281,65 +277,63 @@ void registerRxDataReadyCallback(_usartFctPtr_T callback);
  * Callback function must be void type, and get as argument USART number (usartNumber_T).
  * Registering this function is not required.
  * \param callback Pointer to void function. Function must accept USART number as parameter (usartNumber_T)
- * \ingroup interrupt_rx_grp
+ * \ingroup interrupt_grp
  */
 void registerRxBufferFullCallback(_usartFctPtr_T callback);
 /*! \brief Start interrupt based receiver.
  * \param usartNumber USART number (usartNumber_T)
- * \ingroup interrupt_rx_grp
+ * \ingroup interrupt_grp
  */
 void usartRxStart(usartNumber_T const usartNumber);
-#endif /* defined (USE_USART0_INTERRUPT) || defined (USE_USART1_INTERRUPT) || defined (USE_USART2_INTERRUPT) || defined (USE_USART3_INTERRUPT) */
-/*! \brief Get receive complete flag.
- * \return Returns non zero value if flag set, else returns 0
- * \param usartNumber USART number (usartNumber_T)
- * \ingroup normal_rx_grp
- */
-uint8_t usartDataReceived(usartNumber_T const usartNumber);
-/*! \brief Immediate return contents of USART data register.
- * \return USART data register contents
- * \param usartNumber USART number (usartNumber_T)
- * \ingroup normal_rx_grp
- */
-uint8_t usartImGetByte(usartNumber_T const usartNumber);
-/*! \brief Wait for receive complete flag, then return contents of USART data register.
- * \return USART data register contents
- * \param usartNumber USART number (usartNumber_T)
- * \ingroup normal_rx_grp
- */
-uint8_t usartGetByte(usartNumber_T const usartNumber);
-#if defined (USE_USART0_INTERRUPT) || defined (USE_USART1_INTERRUPT)\
-	|| defined (USE_USART2_INTERRUPT) || defined (USE_USART3_INTERRUPT)
 /*! \brief Register callback function called when transmission from buffer ends.
  *
  * Callback function must be void type, and get as argument USART number (usartNumber_T).
  * Registering this function is not required.
  * \param callback Pointer to void function. Function must accept USART number as parameter (usartNumber_T)
- * \ingroup interrupt_tx_grp
+ * \ingroup interrupt_grp
  */
 void registerTxCompleteCallback(_usartFctPtr_T callback);
 /*! \brief Start interrupt based transmitter.
  * \param usartNumber USART number (usartNumber_T)
- * \ingroup interrupt_tx_grp
+ * \ingroup interrupt_grp
  */
 void usartTxStart(usartNumber_T const usartNumber);
-#endif /* defined (USE_USART0_INTERRUPT) || defined (USE_USART1_INTERRUPT) || defined (USE_USART2_INTERRUPT) || defined (USE_USART3_INTERRUPT) */
+#endif
+/* defined (USE_USART0_INTERRUPT) || defined (USE_USART1_INTERRUPT) || defined (USE_USART2_INTERRUPT) || defined (USE_USART3_INTERRUPT) */
+/*! \brief Get receive complete flag.
+ * \return Returns non zero value if flag set, else returns 0
+ * \param usartNumber USART number (usartNumber_T)
+ * \ingroup normal_grp
+ */
+uint8_t usartDataReceived(usartNumber_T const usartNumber);
+/*! \brief Immediate return contents of USART data register.
+ * \return USART data register contents
+ * \param usartNumber USART number (usartNumber_T)
+ * \ingroup normal_grp
+ */
+uint8_t usartImGetByte(usartNumber_T const usartNumber);
+/*! \brief Wait for receive complete flag, then return contents of USART data register.
+ * \return USART data register contents
+ * \param usartNumber USART number (usartNumber_T)
+ * \ingroup normal_grp
+ */
+uint8_t usartGetByte(usartNumber_T const usartNumber);
 /*! \brief Get transmit complete flag.
  * \return Returns non zero value if flag set, else returns 0
  * \param usartNumber USART number (usartNumber_T)
- * \ingroup normal_tx_grp
+ * \ingroup normal_grp
  */
 uint8_t usartDataTransferred(usartNumber_T const usartNumber);
 /*! \brief Immediate put byte to USART data register.
  * \param usartNumber USART number (usartNumber_T)
  * \param data Byte to put (uint8_t)
- * \ingroup normal_tx_grp
+ * \ingroup normal_grp
  */
 void usartImPutByte(usartNumber_T const usartNumber, uint8_t const data);
 /*! \brief Wait for transmit complete flag, then put byte to USART data register.
  * \param usartNumber USART number (usartNumber_T)
  * \param data Byte to put (uint8_t)
- * \ingroup normal_tx_grp
+ * \ingroup normal_grp
  */
 void usartPutByte(usartNumber_T const usartNumber, uint8_t const data);
 #endif /* USART_LIB_H_ */
