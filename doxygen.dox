@@ -30,11 +30,13 @@
  * \li added doxygen generated documentation
  * \li supported: ATmega162, ATmega48, ATmega88, ATmega168, ATmega328, ATmega640, ATmega1280, ATmega1281, ATmega2560, ATmega2561, Atmega16, ATmega32, ATmega323, ATmega8
  * 
- * \todo \li add support for more AVR MCU's
+ * \todo
+ * \li add support for more AVR MCU's
  * \li add support for more frame formats
  * \li add support for MPCM
  *
- * \bug \li ATmega161 not working! Changes in usartInit(usartNumber_T, uint16_t) function and in usart_lib-mach.h needed.
+ * \bug
+ * \li ATmega161 not working! Changes in usartInit(usartNumber_T, uint16_t) function and in usart_lib-mach.h needed.
  *
  * \section usage_sec Usage
  *
@@ -61,5 +63,6 @@
  * \sa normal_rx_grp
  * \sa normal_tx_grp
  *
+ * Always newest version You can find here: https://github.com/ryba84/usart_lib
  * \example interrupt_mode.c
  */
