@@ -147,7 +147,7 @@ int8_t usartPutByteToTransmitBuffer(usartNumber_T const usartNumber, uint8_t con
 // USART initialization
 void usartInit(usartNumber_T const usartNumber, uint16_t const ubrrValue) {
 	switch (usartNumber) {
-#if defined (USE_USART0)
+#if defined (USE_USART0) || defined (USE_USART0_INTERRUPT)
 	case USART0:
 		// set baud rate
 		UBRR_HIGH_REG0 = (uint8_t) ((ubrrValue & 0x7fff) >> 8);
@@ -163,7 +163,7 @@ void usartInit(usartNumber_T const usartNumber, uint16_t const ubrrValue) {
 		USART0_8N1_FRAME_FORMAT;
 		break;
 #endif /* defined (USE_USART0) */
-#if defined (USE_USART1)
+#if defined (USE_USART1) || defined (USE_USART1_INTERRUPT)
 	case USART1:
 		// set baud rate
 		UBRR_HIGH_REG1 = (ubrrValue >> 8);
@@ -179,7 +179,7 @@ void usartInit(usartNumber_T const usartNumber, uint16_t const ubrrValue) {
 		USART1_8N1_FRAME_FORMAT;
 		break;
 #endif /* defined (USE_USART1) */
-#if defined (USE_USART2)
+#if defined (USE_USART2) || defined (USE_USART2_INTERRUPT)
 	case USART2:
 		// set baud rate
 		UBRR_HIGH_REG2 = (ubrrValue >> 8);
@@ -195,7 +195,7 @@ void usartInit(usartNumber_T const usartNumber, uint16_t const ubrrValue) {
 		USART2_8N1_FRAME_FORMAT;
 		break;
 #endif /* defined (USE_USART2) */
-#if defined (USE_USART3)
+#if defined (USE_USART3) || defined (USE_USART3_INTERRUPT)
 	case USART3:
 		// set baud rate
 		UBRR_HIGH_REG3 = (ubrrValue >> 8);
