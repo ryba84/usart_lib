@@ -28,16 +28,13 @@ For usage see refman.pdf in doc directory.
 
 ###Changelog:
 
-Version
-    2.0 - 08.03.2016
-
-        full library rewrite, whole usage change
-        added doxygen generated documentation
-        supported: ATmega162, ATmega48, ATmega88, ATmega168, ATmega328, ATmega640, ATmega1280, ATmega1281, ATmega2560, ATmega2561, Atmega16, ATmega32, ATmega323, ATmega8
+Version 2.0 - 08.03.2016
+ - full library rewrite, whole usage change
+ - added doxygen generated documentation
+ - supported MCU: ATmega162, ATmega48, ATmega88, ATmega168, ATmega328, ATmega640, ATmega1280, ATmega1281, ATmega2560, ATmega2561, Atmega16, ATmega32, ATmega323, ATmega8
 
 ###Todo:
-
-    add support for more AVR MCU's
-    add support for more frame formats
-    add support for MPCM
+ - add support for more AVR MCU's
+ - add support for more frame formats
+ - add support for MPCM
 
