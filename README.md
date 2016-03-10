@@ -15,13 +15,14 @@ For full license see http://www.gnu.org/licenses/gpl-3.0.en.html
 
 ###Introduction
 
-For now only supported data format is 8N1. This library supports two modes of operation for up to four USART's.
+This library provides two modes of operation for up to four USART's.
 
 > - Interrupt based mode with separate circular transmitting and receiving buffers for each enabled USART. 
 > - Normal mode without additional buffers.
-> - Mixing modes of operation is supported, e.g. USART0 in interrupt based mode, and USART1 in normal mode.
 
-For usage see refman.pdf in doc directory.
+Mixing modes of operation is supported, e.g. USART0 in interrupt based mode, and USART1 in normal mode. For now only supported data format is 8N1.
+
+For detailed usage see refman.pdf in doc directory, and attached interrupt_mode.c example.
 
 ###Changelog:
 
