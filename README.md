@@ -1,10 +1,7 @@
 ##Hardware USART library for AVR 8bit MCU's
 
 ###Copyright
-    Piotr Rudzki (c)2015 
-
-###Date
-    08.03.2016 
+>Piotr Rudzki (c)2015 
 
 ###License
 
