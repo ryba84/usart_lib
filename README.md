@@ -26,7 +26,12 @@ For detailed usage see refman.pdf in doc directory, and attached interrupt_mode.
 
 ###Changelog:
 
-Version 2.0 - 10.03.2016
+Version
+ 2.0 - 11.03.2016
+ - removed bug in ATmega161
+ - small changes in hardware definitions
+ 
+ 2.0 - 10.03.2016
  - removed bug in usart_lib.c - wrong conditional compilation
  
  2.0 - 08.03.2016
