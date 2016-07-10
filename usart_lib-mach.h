@@ -73,8 +73,8 @@
 #define USART0_TEST_RXC	(UCSR0A & (1 << RXC))
 #define USART1_TEST_RXC	(UCSR1A & (1 << RXC))
 // test TX complete
-#define USART0_TEST_TXC	(UCSR0A & (1 << TXC))
-#define USART1_TEST_TXC	(UCSR1A & (1 << TXC))
+#define USART0_TEST_TXC	(UCSR0A & (1 << UDRE))
+#define USART1_TEST_TXC	(UCSR1A & (1 << UDRE))
 #elif defined (__AVR_ATmega162__) // not tested but should work
 #if defined (USE_USART2) || defined (USE_USART2_INTERRUPT) || defined (USE_USART3) || defined (USE_USART3_INTERRUPT)
 #error "Supported only USART0 and USART1!!!"
@@ -116,8 +116,8 @@
 #define USART0_TEST_RXC	(UCSR0A & (1 << RXC0))
 #define USART1_TEST_RXC	(UCSR1A & (1 << RXC1))
 // test TX complete
-#define USART0_TEST_TXC	(UCSR0A & (1 << TXC0))
-#define USART1_TEST_TXC	(UCSR1A & (1 << TXC1))
+#define USART0_TEST_TXC	(UCSR0A & (1 << UDRE0))
+#define USART1_TEST_TXC	(UCSR1A & (1 << UDRE1))
 #elif defined (__AVR_ATmega48__) || defined (__AVR_ATmega88__) || defined (__AVR_ATmega168__) || defined (__AVR_ATmega328__)
 #if defined (USE_USART1) || defined (USE_USART1_INTERRUPT) || defined (USE_USART2) || defined (USE_USART2_INTERRUPT) || defined (USE_USART3) || defined (USE_USART3_INTERRUPT)
 #error "Supported only USART0!!!"
@@ -145,7 +145,7 @@
 // test RX complete
 #define USART0_TEST_RXC	(UCSR0A & (1 << RXC0))
 // test TX complete
-#define USART0_TEST_TXC	(UCSR0A & (1 << TXC0))
+#define USART0_TEST_TXC	(UCSR0A & (1 << UDRE0))
 #elif defined (__AVR_ATmega640__) || defined (__AVR_ATmega1280__) ||\
 	defined (__AVR_ATmega1281__) || defined (__AVR_ATmega2560__) || defined (__AVR_ATmega2561__)
 // interrupt vectors
@@ -213,10 +213,10 @@
 #define USART2_TEST_RXC	(UCSR2A & (1 << RXC2))
 #define USART3_TEST_RXC	(UCSR3A & (1 << RXC3))
 // test TX complete
-#define USART0_TEST_TXC	(UCSR0A & (1 << TXC0))
-#define USART1_TEST_TXC	(UCSR1A & (1 << TXC1))
-#define USART2_TEST_TXC	(UCSR2A & (1 << TXC2))
-#define USART3_TEST_TXC	(UCSR3A & (1 << TXC3))
+#define USART0_TEST_TXC	(UCSR0A & (1 << UDRE0))
+#define USART1_TEST_TXC	(UCSR1A & (1 << UDRE1))
+#define USART2_TEST_TXC	(UCSR2A & (1 << UDRE2))
+#define USART3_TEST_TXC	(UCSR3A & (1 << UDRE3))
 #elif defined (__AVR_ATmega16__) || defined (__AVR_ATmega32__) ||\
 	defined (__AVR_ATmega323__) || defined (__AVR_ATmega8__)
 #if defined (USE_USART1) || defined (USE_USART1_INTERRUPT) || defined (USE_USART2) || defined (USE_USART2_INTERRUPT) || defined (USE_USART3) || defined (USE_USART3_INTERRUPT)
@@ -245,7 +245,7 @@
 // test RX complete
 #define USART0_TEST_RXC	(UCSRA & (1 << RXC))
 // test TX complete
-#define USART0_TEST_TXC	(UCSRA & (1 << TXC))
+#define USART0_TEST_TXC	(UCSRA & (1 << UDRE))
 #else
 #error "MCU not supported!!! Edit usart_lib-mach.h to add support."
 #endif

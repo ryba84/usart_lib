@@ -200,17 +200,17 @@ uint8_t usartDataTransferred(usartNumber_T const usartNumber) {
 	case USART1:
 		tmp = USART1_TEST_TXC;
 		break;
-#endif /* defined (USE_USART0) */
+#endif /* defined (USE_USART1) */
 #if defined (USE_USART2)
 	case USART2:
 		tmp = USART2_TEST_TXC;
 		break;
-#endif /* defined (USE_USART0) */
+#endif /* defined (USE_USART2) */
 #if defined (USE_USART3)
 	case USART3:
 		tmp = USART3_TEST_TXC;
 		break;
-#endif /* defined (USE_USART0) */
+#endif /* defined (USE_USART3) */
 	default:
 		break;
 	}
